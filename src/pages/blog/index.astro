@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
+const base = import.meta.env.BASE_URL;
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
@@ -24,7 +25,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
       <div class="space-y-8">
         {posts.map(post => (
           <article class="card group">
-            <a href={`/blog/${post.slug}`} class="block">
+            <a href={`${base}blog/${post.slug}`} class="block">
               <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
                 <time datetime={post.data.pubDate.toISOString()}>
                   {formatDate(post.data.pubDate)}

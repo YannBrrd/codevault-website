@@ -2,11 +2,12 @@
 import { getCollection } from 'astro:content';
 import DocsLayout from '../../layouts/DocsLayout.astro';
 
+const base = import.meta.env.BASE_URL;
 const docs = await getCollection('docs');
 const indexDoc = docs.find(doc => doc.slug === 'index');
 
 if (!indexDoc) {
-  return Astro.redirect('/docs/getting-started');
+  return Astro.redirect(`${base}docs/getting-started`);
 }
 
 const { Content } = await indexDoc.render();

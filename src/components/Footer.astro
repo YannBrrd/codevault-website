@@ -1,20 +1,22 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const footerLinks = {
   product: [
-    { href: '/features', label: 'Features' },
-    { href: '/pricing', label: 'Pricing' },
-    { href: '/docs', label: 'Documentation' },
-    { href: '/blog', label: 'Blog' },
+    { href: `${base}features`, label: 'Features' },
+    { href: `${base}pricing`, label: 'Pricing' },
+    { href: `${base}docs`, label: 'Documentation' },
+    { href: `${base}blog`, label: 'Blog' },
   ],
   resources: [
-    { href: '/docs/getting-started', label: 'Getting Started' },
-    { href: '/docs/api', label: 'API Reference' },
-    { href: '/docs/ide-integration', label: 'IDE Integration' },
+    { href: `${base}docs/getting-started`, label: 'Getting Started' },
+    { href: `${base}docs/api`, label: 'API Reference' },
+    { href: `${base}docs/ide-integration`, label: 'IDE Integration' },
   ],
   company: [
-    { href: '/contact', label: 'Contact' },
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/terms', label: 'Terms of Service' },
+    { href: `${base}contact`, label: 'Contact' },
+    { href: `${base}privacy`, label: 'Privacy Policy' },
+    { href: `${base}terms`, label: 'Terms of Service' },
   ],
 };
 
@@ -26,7 +28,7 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <!-- Brand -->
       <div class="col-span-2 md:col-span-1">
-        <a href="/" class="flex items-center gap-2 mb-4">
+        <a href={base} class="flex items-center gap-2 mb-4">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center">
             <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
