@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const sidebarLinks = [
+  {
+    title: 'Getting Started',
+    links: [
+      { href: '/docs', label: 'Introduction' },
+      { href: '/docs/getting-started', label: 'Quick Start' },
+      { href: '/docs/installation', label: 'Installation' },
+    ],
+  },
+  {
+    title: 'Configuration',
+    links: [
+      { href: '/docs/configuration', label: 'Environment Variables' },
+      { href: '/docs/docker', label: 'Docker Compose' },
+      { href: '/docs/kubernetes', label: 'Kubernetes' },
+    ],
+  },
+  {
+    title: 'API Reference',
+    links: [
+      { href: '/docs/api', label: 'OpenAI-Compatible API' },
+      { href: '/docs/api-keys', label: 'API Key Management' },
+      { href: '/docs/conversations', label: 'Conversation Memory' },
+    ],
+  },
+  {
+    title: 'IDE Integration',
+    links: [
+      { href: '/docs/vscode', label: 'VS Code' },
+      { href: '/docs/jetbrains', label: 'JetBrains IDEs' },
+      { href: '/docs/continue', label: 'Continue Extension' },
+    ],
+  },
+  {
+    title: 'Advanced',
+    links: [
+      { href: '/docs/rag', label: 'RAG Pipeline' },
+      { href: '/docs/finetuning', label: 'Fine-tuning' },
+      { href: '/docs/monitoring', label: 'Monitoring' },
+    ],
+  },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | CodeVault Docs</title>
+    <meta name="description" content={description || `${title} - CodeVault Documentation`} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+
+    <div class="flex-1 max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-8">
+        <!-- Sidebar -->
+        <aside class="hidden lg:block">
+          <nav class="sticky top-24 space-y-6 pr-4 max-h-[calc(100vh-8rem)] overflow-y-auto">
+            {sidebarLinks.map(section => (
+              <div>
+                <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">
+                  {section.title}
+                </h4>
+                <ul class="space-y-1">
+                  {section.links.map(link => (
+                    <li>
+                      <a
+                        href={link.href}
+                        class:list={[
+                          "block px-3 py-2 rounded-lg text-sm transition-colors",
+                          currentPath === link.href
+                            ? "bg-blue-500/10 text-blue-400 border-l-2 border-blue-500"
+                            : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                        ]}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="min-w-0">
+          <article class="prose prose-slate prose-invert max-w-none">
+            <slot />
+          </article>
+
+          <!-- Pagination -->
+          <div class="mt-16 pt-8 border-t border-slate-800 flex items-center justify-between">
+            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+              &larr; Previous
+            </a>
+            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+              Next &rarr;
+            </a>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <Footer />
+  </body>
+</html>

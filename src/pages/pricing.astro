@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Pricing from '../components/Pricing.astro';
+
+const faqs = [
+  {
+    question: 'Is the self-hosted version really free?',
+    answer: 'Yes! The self-hosted version is completely free and open-source. You can deploy it on your own infrastructure with no licensing fees. We only charge for priority support and enterprise features.',
+  },
+  {
+    question: 'What models can I use?',
+    answer: 'You can use any model supported by Ollama, including Qwen, DeepSeek, CodeGemma, Devstral, and many more. We provide curated recommendations optimized for coding tasks.',
+  },
+  {
+    question: 'What GPU do I need?',
+    answer: 'For the smallest models (7B), a GPU with 8GB VRAM is sufficient. For larger models like Qwen 32B, you\'ll need 24GB+ VRAM. We recommend NVIDIA RTX 3090/4090 or A100 for production.',
+  },
+  {
+    question: 'Can I fine-tune models with my code?',
+    answer: 'Yes! CodeVault includes a built-in fine-tuning pipeline using LoRA. You can train models on your codebase to match your coding standards and conventions.',
+  },
+  {
+    question: 'How does the RAG pipeline work?',
+    answer: 'The RAG pipeline indexes your codebase and creates embeddings for semantic search. When you ask a question, relevant code snippets are retrieved and included in the context for more accurate responses.',
+  },
+  {
+    question: 'Is my code sent to any external servers?',
+    answer: 'No. CodeVault is 100% self-hosted. Your code never leaves your infrastructure. All inference happens locally on your GPU.',
+  },
+];
+---
+
+<BaseLayout title="Pricing" description="Simple, transparent pricing for CodeVault. Start free with the open-source version.">
+  <!-- Hero -->
+  <section class="py-16 bg-gradient-to-b from-slate-900 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+        Simple, transparent pricing
+      </h1>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+        Start free with the open-source version. Upgrade when you need priority support and enterprise features.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing component -->
+  <Pricing />
+
+  <!-- FAQ -->
+  <section class="py-24 bg-slate-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-white text-center mb-12">
+        Frequently asked questions
+      </h2>
+      <div class="space-y-6">
+        {faqs.map(faq => (
+          <details class="group card cursor-pointer">
+            <summary class="flex items-center justify-between font-medium text-white">
+              {faq.question}
+              <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-4 text-slate-400 text-sm leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">Still have questions?</h2>
+      <p class="text-lg text-slate-400 mb-8">
+        Our team is here to help. Contact us for a personalized demo or to discuss your requirements.
+      </p>
+      <a href="/contact" class="btn btn-primary">Contact Sales</a>
+    </div>
+  </section>
+</BaseLayout>

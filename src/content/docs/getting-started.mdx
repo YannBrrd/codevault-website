@@ -1,0 +1,98 @@
+---
+title: Quick Start
+description: Get CodeVault up and running in under 5 minutes
+order: 2
+---
+
+# Quick Start
+
+Get CodeVault running on your server in under 5 minutes.
+
+## Prerequisites
+
+- Ubuntu 24.04 (or compatible Linux distribution)
+- NVIDIA GPU with drivers installed
+- Docker & Docker Compose
+- Git
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YannBrrd/CodeVault.git
+cd CodeVault
+```
+
+### 2. Run the installation script
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+The script will:
+1. Install Docker & Docker Compose (if not present)
+2. Install NVIDIA Container Toolkit
+3. Install Python dependencies for CLI
+4. Start all services
+5. Configure the `ai-manager` alias
+
+### 3. Access the dashboard
+
+Open your browser and navigate to:
+
+- **Web Dashboard**: `http://YOUR_SERVER_IP`
+- **Ollama API**: `http://YOUR_SERVER_IP:11434`
+
+## Install a model
+
+From the web dashboard, click "Install" next to any recommended model. For a quick start, we recommend **Qwen 2.5 Coder 7B** (~4.5 GB).
+
+Or use the CLI:
+
+```bash
+ai-manager install qwen2.5-coder:7b
+```
+
+## Configure your IDE
+
+### VS Code (Continue extension)
+
+Install the [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue) and add this to your config:
+
+```json
+{
+  "models": [{
+    "provider": "openai",
+    "model": "qwen2.5-coder:7b",
+    "apiBase": "http://YOUR_SERVER_IP/v1"
+  }]
+}
+```
+
+### Cursor / Any OpenAI-compatible tool
+
+```
+API Base URL: http://YOUR_SERVER_IP/v1
+API Key: (leave empty or any value)
+Model: qwen2.5-coder:7b
+```
+
+## Test the API
+
+```bash
+curl http://YOUR_SERVER_IP/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen2.5-coder:7b",
+    "messages": [{"role": "user", "content": "Write a hello world in Python"}]
+  }'
+```
+
+## Next steps
+
+- [Full Installation Guide](/docs/installation) - Production deployment options
+- [API Reference](/docs/api) - Complete API documentation
+- [IDE Integration](/docs/vscode) - Advanced IDE setup
+- [Fine-tuning](/docs/finetuning) - Train custom models

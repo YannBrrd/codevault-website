@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const features = [
+  {
+    category: 'AI & Models',
+    items: [
+      {
+        title: 'GPU Acceleration',
+        description: 'Leverage NVIDIA CUDA for blazing-fast inference. Full GPU passthrough with Docker and support for multi-GPU enterprise deployments.',
+        icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+      },
+      {
+        title: 'Curated Models',
+        description: 'Pre-selected coding models from Devstral, Qwen, DeepSeek, and more. One-click installation through the dashboard.',
+        icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+      },
+      {
+        title: 'Fine-tuning',
+        description: 'Train custom models with your coding standards using LoRA. Built-in dataset management and training job orchestration.',
+        icon: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
+      },
+    ],
+  },
+  {
+    category: 'Integration',
+    items: [
+      {
+        title: 'OpenAI-Compatible API',
+        description: 'Drop-in replacement for OpenAI API. Use with VS Code, Cursor, Continue, and any tool that supports OpenAI.',
+        icon: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+      },
+      {
+        title: 'VS Code Extension',
+        description: 'Native extension with inline code completions and chat sidebar. Context-aware suggestions as you type.',
+        icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+      },
+      {
+        title: 'JetBrains Plugin',
+        description: 'Full support for IntelliJ IDEA, PyCharm, WebStorm, and all JetBrains IDEs. Completion contributor and tool window.',
+        icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+      },
+    ],
+  },
+  {
+    category: 'Context & Memory',
+    items: [
+      {
+        title: 'RAG Pipeline',
+        description: 'Index your entire codebase for context-aware completions. Semantic search across files, functions, and documentation.',
+        icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7',
+      },
+      {
+        title: 'Conversation Memory',
+        description: 'Persistent conversations with automatic summarization. Vector-based semantic search within chat history.',
+        icon: 'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z',
+      },
+      {
+        title: 'Smart Caching',
+        description: 'Multi-layer caching for API keys, model lists, and embeddings. Optional Redis for distributed deployments.',
+        icon: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
+      },
+    ],
+  },
+  {
+    category: 'Enterprise',
+    items: [
+      {
+        title: 'RBAC & Multi-tenancy',
+        description: 'Role-based access control with Admin, User, and Viewer roles. Organization-based isolation for teams.',
+        icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+      },
+      {
+        title: 'API Key Management',
+        description: 'Create, rotate, and revoke API keys per user or team. Rate limiting and usage tracking per key.',
+        icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z',
+      },
+      {
+        title: 'Audit Logging',
+        description: 'Complete traceability for compliance. Track all API calls, admin actions, and model usage.',
+        icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01',
+      },
+    ],
+  },
+  {
+    category: 'Deployment',
+    items: [
+      {
+        title: 'Docker Compose',
+        description: 'Single-command deployment for development and small teams. Profiles for HTTPS, monitoring, and caching.',
+        icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+      },
+      {
+        title: 'Kubernetes',
+        description: 'Production-ready Helm chart with GPU support, ingress, and auto-scaling. ServiceMonitor for Prometheus.',
+        icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+      },
+      {
+        title: 'Monitoring',
+        description: 'Built-in Prometheus metrics and Grafana dashboards. Alertmanager integration for Slack and Teams.',
+        icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Features" description="Explore all the features that make CodeVault the best self-hosted AI coding assistant.">
+  <!-- Hero -->
+  <section class="py-24 bg-gradient-to-b from-slate-900 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+        Everything you need for <span class="gradient-text">AI-powered development</span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+        CodeVault combines the power of open-source LLMs with enterprise-grade features.
+        Self-hosted, private, and fully customizable.
+      </p>
+    </div>
+  </section>
+
+  <!-- Features by category -->
+  {features.map((category, index) => (
+    <section class:list={["py-24", index % 2 === 0 ? "bg-slate-950" : "bg-slate-900/50"]}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-white mb-12">{category.category}</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {category.items.map(feature => (
+            <div class="card">
+              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={feature.icon} />
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="py-24 bg-slate-900">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">Ready to get started?</h2>
+      <p class="text-lg text-slate-400 mb-8">
+        Deploy CodeVault in minutes and start coding with AI assistance.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/docs/getting-started" class="btn btn-primary">Get Started Free</a>
+        <a href="/pricing" class="btn btn-secondary">View Pricing</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

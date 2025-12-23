@@ -1,0 +1,108 @@
+---
+const features = [
+  {
+    icon: 'gpu',
+    title: 'GPU Acceleration',
+    description: 'Leverage NVIDIA CUDA for blazing-fast inference. Supports multi-GPU setups for enterprise workloads.',
+  },
+  {
+    icon: 'api',
+    title: 'OpenAI-Compatible API',
+    description: 'Drop-in replacement for OpenAI API. Works with VS Code, Cursor, Continue, and any OpenAI-compatible tool.',
+  },
+  {
+    icon: 'ide',
+    title: 'IDE Extensions',
+    description: 'Native extensions for VS Code and JetBrains IDEs. Inline completions and chat sidebar.',
+  },
+  {
+    icon: 'rag',
+    title: 'RAG Pipeline',
+    description: 'Index your codebase for context-aware completions. Semantic search across your entire project.',
+  },
+  {
+    icon: 'finetune',
+    title: 'Fine-tuning',
+    description: 'Train custom models with your coding standards. LoRA fine-tuning with built-in dataset management.',
+  },
+  {
+    icon: 'security',
+    title: 'Enterprise Security',
+    description: 'RBAC, API key management, audit logging, and multi-tenancy. Your code stays in your infrastructure.',
+  },
+];
+
+const iconPaths: Record<string, string> = {
+  gpu: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
+  api: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
+  ide: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
+  rag: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7',
+  finetune: 'M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4',
+  security: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+};
+---
+
+<section class="py-24 bg-slate-950" id="features">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        Everything you need for AI-powered development
+      </h2>
+      <p class="text-lg text-slate-400">
+        CodeVault combines the power of open-source LLMs with enterprise-grade features.
+        Self-hosted, private, and fully customizable.
+      </p>
+    </div>
+
+    <!-- Features grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map(feature => (
+        <div class="card group">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500/20 to-violet-500/20 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-violet-500/30 transition-colors">
+              <svg class="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={iconPaths[feature.icon]} />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Models section -->
+    <div class="mt-24">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl font-bold text-white mb-4">Curated Coding Models</h3>
+        <p class="text-slate-400">Pre-selected models optimized for code generation and completion.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+          <div class="text-sm font-medium text-blue-400 mb-1">Devstral 2</div>
+          <div class="text-xs text-slate-500 mb-2">123B params &middot; ~70 GB</div>
+          <div class="text-sm text-slate-400">Flagship agentic model. #1 on SWE-Bench.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+          <div class="text-sm font-medium text-violet-400 mb-1">Qwen 2.5 Coder</div>
+          <div class="text-xs text-slate-500 mb-2">32B params &middot; ~20 GB</div>
+          <div class="text-sm text-slate-400">High intelligence coding model.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+          <div class="text-sm font-medium text-green-400 mb-1">DeepSeek Coder V2</div>
+          <div class="text-xs text-slate-500 mb-2">16B params &middot; ~9 GB</div>
+          <div class="text-sm text-slate-400">Polyglot expert. 338 languages.</div>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
+          <div class="text-sm font-medium text-orange-400 mb-1">CodeGemma</div>
+          <div class="text-xs text-slate-500 mb-2">7B params &middot; ~5 GB</div>
+          <div class="text-sm text-slate-400">Lightweight and fast completion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
