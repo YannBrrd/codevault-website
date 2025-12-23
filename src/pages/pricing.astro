@@ -4,8 +4,8 @@ import Pricing from '../components/Pricing.astro';
 
 const faqs = [
   {
-    question: 'Is the self-hosted version really free?',
-    answer: 'Yes! The self-hosted version is completely free and open-source. You can deploy it on your own infrastructure with no licensing fees. We only charge for priority support and enterprise features.',
+    question: 'How is CodeVault deployed?',
+    answer: 'CodeVault is deployed on-premise on your infrastructure. We provide full deployment support and can customize the installation to your specific requirements.',
   },
   {
     question: 'What models can I use?',
@@ -25,20 +25,20 @@ const faqs = [
   },
   {
     question: 'Is my code sent to any external servers?',
-    answer: 'No. CodeVault is 100% self-hosted. Your code never leaves your infrastructure. All inference happens locally on your GPU.',
+    answer: 'No. CodeVault is 100% on-premise. Your code never leaves your infrastructure. All inference happens locally on your GPU.',
   },
 ];
 ---
 
-<BaseLayout title="Pricing" description="Simple, transparent pricing for CodeVault. Start free with the open-source version.">
+<BaseLayout title="Pricing" description="Contact us for a custom quote tailored to your organization's needs.">
   <!-- Hero -->
   <section class="py-16 bg-gradient-to-b from-slate-900 to-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6">
-        Simple, transparent pricing
+        Enterprise Solutions
       </h1>
       <p class="text-xl text-slate-400 max-w-2xl mx-auto">
-        Start free with the open-source version. Upgrade when you need priority support and enterprise features.
+        Flexible deployment options tailored to your organization. Contact us for a custom quote.
       </p>
     </div>
   </section>
@@ -73,11 +73,11 @@ const faqs = [
   <!-- CTA -->
   <section class="py-24 bg-slate-900">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-white mb-6">Still have questions?</h2>
+      <h2 class="text-3xl font-bold text-white mb-6">Ready to get started?</h2>
       <p class="text-lg text-slate-400 mb-8">
         Our team is here to help. Contact us for a personalized demo or to discuss your requirements.
       </p>
-      <a href="/contact" class="btn btn-primary">Contact Sales</a>
+      <a href="/contact" class="btn btn-primary">Contact Us</a>
     </div>
   </section>
 </BaseLayout>
