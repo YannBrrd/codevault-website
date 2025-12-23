@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://codevault.dev/sitemap-index.xml
+Sitemap: https://yannbrrd.github.io/codevault-website/sitemap-index.xml
