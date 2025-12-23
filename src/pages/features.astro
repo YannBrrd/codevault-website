@@ -9,12 +9,12 @@ const features = [
     items: [
       {
         title: 'GPU Acceleration',
-        description: 'Leverage NVIDIA CUDA for blazing-fast inference. Full GPU passthrough with Docker and support for multi-GPU enterprise deployments.',
+        description: 'Leverage NVIDIA CUDA for blazing-fast inference. Full GPU passthrough with support for multi-GPU enterprise deployments.',
         icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
       },
       {
-        title: 'Curated Models',
-        description: 'Pre-selected coding models from Devstral, Qwen, DeepSeek, and more. One-click installation through the dashboard.',
+        title: 'Choose Your Models',
+        description: 'Select from latest coding models like DeepSeek V3, Qwen 2.5 Coder, Devstral, or request any open model. We deploy and optimize it for your hardware.',
         icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
       },
       {
@@ -33,13 +33,13 @@ const features = [
         icon: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z',
       },
       {
-        title: 'VS Code Extension',
-        description: 'Native extension with inline code completions and chat sidebar. Context-aware suggestions as you type.',
+        title: 'IDE Support',
+        description: 'Works with any IDE that supports OpenAI-compatible APIs: VS Code, Cursor, JetBrains IDEs, Neovim, and more.',
         icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4',
       },
       {
-        title: 'JetBrains Plugin',
-        description: 'Full support for IntelliJ IDEA, PyCharm, WebStorm, and all JetBrains IDEs. Completion contributor and tool window.',
+        title: 'Web Dashboard',
+        description: 'Monitor usage, manage models, and chat with AI directly from the browser. Admin panel for team management.',
         icon: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
       },
     ],
@@ -59,7 +59,7 @@ const features = [
       },
       {
         title: 'Smart Caching',
-        description: 'Multi-layer caching for API keys, model lists, and embeddings. Optional Redis for distributed deployments.',
+        description: 'Multi-layer caching for fast responses. Optimized for high-throughput team environments.',
         icon: 'M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01',
       },
     ],
@@ -85,29 +85,29 @@ const features = [
     ],
   },
   {
-    category: 'Deployment',
+    category: 'Managed Service',
     items: [
       {
-        title: 'Docker Compose',
-        description: 'Single-command deployment for development and small teams. Profiles for HTTPS, monitoring, and caching.',
+        title: 'On-Premise Deployment',
+        description: 'We deploy and configure CodeVault on your servers. Your code never leaves your infrastructure.',
         icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
       },
       {
-        title: 'Kubernetes',
-        description: 'Production-ready Helm chart with GPU support, ingress, and auto-scaling. ServiceMonitor for Prometheus.',
-        icon: 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10',
+        title: 'Private Cloud',
+        description: 'Deploy in your AWS, Azure, or GCP account. We manage the infrastructure while you retain full control.',
+        icon: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z',
       },
       {
-        title: 'Monitoring',
-        description: 'Built-in Prometheus metrics and Grafana dashboards. Alertmanager integration for Slack and Teams.',
-        icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
+        title: 'Dedicated Support',
+        description: 'Priority support from our engineering team. SLA guarantees and direct access to experts.',
+        icon: 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z',
       },
     ],
   },
 ];
 ---
 
-<BaseLayout title="Features" description="Explore all the features that make CodeVault the best self-hosted AI coding assistant.">
+<BaseLayout title="Features" description="Explore all the features that make CodeVault the best private AI coding assistant for enterprises.">
   <!-- Hero -->
   <section class="py-24 bg-gradient-to-b from-slate-900 to-slate-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -116,7 +116,7 @@ const features = [
       </h1>
       <p class="text-xl text-slate-400 max-w-2xl mx-auto">
         CodeVault combines the power of open-source LLMs with enterprise-grade features.
-        Self-hosted, private, and fully customizable.
+        Deployed on your infrastructure, managed by our team.
       </p>
     </div>
   </section>
@@ -148,10 +148,10 @@ const features = [
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl font-bold text-white mb-6">Ready to get started?</h2>
       <p class="text-lg text-slate-400 mb-8">
-        Deploy CodeVault in minutes and start coding with AI assistance.
+        Contact us to discuss your requirements and get a custom deployment plan.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href={`${base}docs/getting-started`} class="btn btn-primary">Get Started Free</a>
+        <a href={`${base}contact`} class="btn btn-primary">Contact Us</a>
         <a href={`${base}pricing`} class="btn btn-secondary">View Pricing</a>
       </div>
     </div>

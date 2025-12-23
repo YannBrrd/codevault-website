@@ -7,19 +7,19 @@ const base = import.meta.env.BASE_URL;
 const faqs = [
   {
     question: 'How is CodeVault deployed?',
-    answer: 'CodeVault is deployed on-premise on your infrastructure. We provide full deployment support and can customize the installation to your specific requirements.',
+    answer: 'We deploy CodeVault directly on your infrastructure (on-premise servers or private cloud). Our team handles the entire setup, configuration, and optimization for your hardware.',
   },
   {
     question: 'What models can I use?',
-    answer: 'You can use any model supported by Ollama, including Qwen, DeepSeek, CodeGemma, Devstral, and many more. We provide curated recommendations optimized for coding tasks.',
+    answer: 'Choose from latest models like DeepSeek V3, Qwen 2.5 Coder, Devstral, and more. You can also request any open model - we\'ll deploy and optimize it for your hardware.',
   },
   {
-    question: 'What GPU do I need?',
-    answer: 'For the smallest models (7B), a GPU with 8GB VRAM is sufficient. For larger models like Qwen 32B, you\'ll need 24GB+ VRAM. We recommend NVIDIA RTX 3090/4090 or A100 for production.',
+    question: 'What hardware do I need?',
+    answer: 'We\'ll help you determine the right hardware based on your needs. For smaller models, a single GPU with 24GB+ VRAM works great. For larger models like DeepSeek V3, we recommend multi-GPU setups or A100/H100 instances.',
   },
   {
     question: 'Can I fine-tune models with my code?',
-    answer: 'Yes! CodeVault includes a built-in fine-tuning pipeline using LoRA. You can train models on your codebase to match your coding standards and conventions.',
+    answer: 'Yes! CodeVault includes a built-in fine-tuning pipeline using LoRA. We can help you train models on your codebase to match your coding standards and conventions.',
   },
   {
     question: 'How does the RAG pipeline work?',
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: 'Is my code sent to any external servers?',
-    answer: 'No. CodeVault is 100% on-premise. Your code never leaves your infrastructure. All inference happens locally on your GPU.',
+    answer: 'Never. CodeVault runs 100% on your infrastructure. Your code never leaves your servers. All AI inference happens locally on your hardware.',
   },
 ];
 ---

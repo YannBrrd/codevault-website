@@ -1,6 +1,6 @@
 ---
 title: Introducing CodeVault
-description: Your self-hosted AI coding assistant is here
+description: Your private AI coding assistant is here
 pubDate: 2024-12-23
 author: Yann Barraud
 tags: ["announcement", "release"]
@@ -8,49 +8,50 @@ tags: ["announcement", "release"]
 
 # Introducing CodeVault
 
-We're excited to announce CodeVault, a self-hosted AI coding assistant that brings the power of modern LLMs to your development workflow while keeping your code 100% private.
+We're excited to announce CodeVault, a private AI coding assistant that brings the power of modern LLMs to your development workflow while keeping your code 100% private.
 
 ## Why we built CodeVault
 
-As developers, we love AI coding assistants. They help us write better code faster. But we also care deeply about privacy and control. That's why we built CodeVault - to give you the best of both worlds.
+As developers, we love AI coding assistants. They help us write better code faster. But we also care deeply about privacy and control. Many organizations can't use cloud-based AI tools due to security policies or compliance requirements.
+
+That's why we built CodeVault - to give you the best of both worlds. Enterprise-grade AI coding assistance, deployed on your infrastructure, managed by our team.
 
 ## Key features
 
 ### GPU-Accelerated Inference
 
-CodeVault leverages NVIDIA CUDA for blazing-fast inference. Whether you're running a 7B model on a single GPU or a 123B model across multiple GPUs, CodeVault delivers responsive completions.
+CodeVault leverages NVIDIA CUDA for blazing-fast inference. Whether you're running DeepSeek V3 or Qwen 2.5 Coder, CodeVault delivers responsive completions optimized for your hardware.
+
+### Choose Your Models
+
+Select from the latest coding models like DeepSeek V3, Qwen 2.5 Coder, Devstral, and more. Want a different model? Just ask - we'll deploy and optimize it for your infrastructure.
 
 ### OpenAI-Compatible API
 
-We've implemented an OpenAI-compatible API, so you can use CodeVault with your existing tools. VS Code, Cursor, Continue - they all work out of the box.
+We've implemented an OpenAI-compatible API, so you can use CodeVault with your existing tools. VS Code, Cursor, Continue, JetBrains - they all work out of the box.
 
 ### Enterprise Ready
 
-CodeVault isn't just for hobbyists. We've built enterprise features from day one:
+CodeVault is built for enterprise from day one:
 
 - **Multi-tenancy** - Isolate teams with organizations
 - **RBAC** - Admin, User, and Viewer roles
 - **Audit logging** - Track every action for compliance
-- **Monitoring** - Prometheus metrics and Grafana dashboards
+- **Dedicated support** - Our team is here to help
 
 ## Getting started
 
-Getting started is easy. Clone the repo, run the install script, and you're up in minutes:
+Getting started is simple:
 
-```bash
-git clone https://github.com/YannBrrd/CodeVault.git
-cd CodeVault && ./install.sh
-```
+1. **Contact us** to discuss your requirements
+2. **We deploy** CodeVault on your infrastructure
+3. **Configure your IDE** with the API endpoint we provide
+4. **Start coding** with AI assistance
 
-Check out our [quick start guide](/docs/getting-started) for detailed instructions.
+Check out our [quick start guide](/docs/getting-started) for more details.
 
-## What's next
+## Your code stays private
 
-We're just getting started. Here's what's on our roadmap:
+With CodeVault, your code never leaves your infrastructure. All AI inference happens locally on your servers. No data is sent to external services. Complete privacy, complete control.
 
-- **VS Code extension** - Native extension with inline completions
-- **JetBrains plugin** - Support for IntelliJ, PyCharm, and more
-- **RAG pipeline** - Index your codebase for context-aware completions
-- **Fine-tuning** - Train models on your coding standards
-
-Stay tuned for updates, and happy coding!
+Ready to get started? [Contact us](/contact) today.

@@ -1,98 +1,85 @@
 ---
 title: Quick Start
-description: Get CodeVault up and running in under 5 minutes
+description: Get started with CodeVault in your development environment
 order: 2
 ---
 
 # Quick Start
 
-Get CodeVault running on your server in under 5 minutes.
+After we deploy CodeVault on your infrastructure, here's how to start using it.
 
-## Prerequisites
+## Your API Endpoint
 
-- Ubuntu 24.04 (or compatible Linux distribution)
-- NVIDIA GPU with drivers installed
-- Docker & Docker Compose
-- Git
+You'll receive a dedicated API endpoint after deployment:
 
-## Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/YannBrrd/CodeVault.git
-cd CodeVault
+```
+https://codevault.your-company.com/v1
 ```
 
-### 2. Run the installation script
+This endpoint is OpenAI-compatible, meaning it works with any tool that supports the OpenAI API.
 
-```bash
-chmod +x install.sh
-./install.sh
-```
+## Configure Your IDE
 
-The script will:
-1. Install Docker & Docker Compose (if not present)
-2. Install NVIDIA Container Toolkit
-3. Install Python dependencies for CLI
-4. Start all services
-5. Configure the `ai-manager` alias
+### VS Code with Continue
 
-### 3. Access the dashboard
-
-Open your browser and navigate to:
-
-- **Web Dashboard**: `http://YOUR_SERVER_IP`
-- **Ollama API**: `http://YOUR_SERVER_IP:11434`
-
-## Install a model
-
-From the web dashboard, click "Install" next to any recommended model. For a quick start, we recommend **Qwen 2.5 Coder 7B** (~4.5 GB).
-
-Or use the CLI:
-
-```bash
-ai-manager install qwen2.5-coder:7b
-```
-
-## Configure your IDE
-
-### VS Code (Continue extension)
-
-Install the [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue) and add this to your config:
+1. Install the [Continue extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+2. Open Continue settings and add:
 
 ```json
 {
   "models": [{
     "provider": "openai",
-    "model": "qwen2.5-coder:7b",
-    "apiBase": "http://YOUR_SERVER_IP/v1"
+    "model": "deepseek-v3",
+    "apiBase": "https://codevault.your-company.com/v1",
+    "apiKey": "your-api-key"
   }]
 }
 ```
 
-### Cursor / Any OpenAI-compatible tool
+### Cursor
+
+1. Open Settings > Models
+2. Add a custom OpenAI-compatible model:
+   - API Base: `https://codevault.your-company.com/v1`
+   - API Key: Your provided API key
+   - Model: `deepseek-v3` (or your deployed model)
+
+### JetBrains IDEs
+
+1. Install an AI assistant plugin (like Continue or CodeGPT)
+2. Configure with your CodeVault endpoint
+
+### Any OpenAI-Compatible Tool
 
 ```
-API Base URL: http://YOUR_SERVER_IP/v1
-API Key: (leave empty or any value)
-Model: qwen2.5-coder:7b
+API Base URL: https://codevault.your-company.com/v1
+API Key: your-api-key
+Model: deepseek-v3
 ```
 
 ## Test the API
 
 ```bash
-curl http://YOUR_SERVER_IP/v1/chat/completions \
+curl https://codevault.your-company.com/v1/chat/completions \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-api-key" \
   -d '{
-    "model": "qwen2.5-coder:7b",
+    "model": "deepseek-v3",
     "messages": [{"role": "user", "content": "Write a hello world in Python"}]
   }'
 ```
 
-## Next steps
+## Web Dashboard
 
-- [Full Installation Guide](/docs/installation) - Production deployment options
+Access the web dashboard at your deployment URL to:
+
+- Chat with AI models directly
+- Monitor usage and performance
+- Manage API keys
+- View available models
+
+## Next Steps
+
 - [API Reference](/docs/api) - Complete API documentation
-- [IDE Integration](/docs/vscode) - Advanced IDE setup
-- [Fine-tuning](/docs/finetuning) - Train custom models
+- [Available Models](/docs/models) - See all deployed models
+- [IDE Setup Guide](/docs/ide-setup) - Detailed IDE configuration
