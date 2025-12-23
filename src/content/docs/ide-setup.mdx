@@ -1,0 +1,105 @@
+---
+title: IDE Setup Guide
+description: Configure your IDE to use CodeVault
+order: 5
+---
+
+# IDE Setup Guide
+
+CodeVault works with any IDE that supports OpenAI-compatible APIs.
+
+## VS Code
+
+### Using Continue Extension
+
+1. Install [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue) from the VS Code marketplace
+2. Open Continue settings (`Ctrl+Shift+P` > "Continue: Open Config")
+3. Add your CodeVault configuration:
+
+```json
+{
+  "models": [{
+    "title": "CodeVault",
+    "provider": "openai",
+    "model": "deepseek-v3",
+    "apiBase": "https://codevault.your-company.com/v1",
+    "apiKey": "your-api-key"
+  }]
+}
+```
+
+### Using Other Extensions
+
+Any VS Code extension supporting OpenAI API works:
+
+- **CodeGPT** - Set custom API endpoint
+- **Cody** - Configure enterprise endpoint
+- **Tabby** - Point to your CodeVault instance
+
+## Cursor
+
+1. Open **Settings** > **Models**
+2. Click **Add Model**
+3. Select **OpenAI Compatible**
+4. Configure:
+   - API Base: `https://codevault.your-company.com/v1`
+   - API Key: Your CodeVault API key
+   - Model: `deepseek-v3`
+
+## JetBrains IDEs
+
+Works with IntelliJ IDEA, PyCharm, WebStorm, and all JetBrains IDEs.
+
+### Using Continue Plugin
+
+1. Install Continue from the JetBrains Marketplace
+2. Open Settings > Tools > Continue
+3. Configure your CodeVault endpoint
+
+### Using CodeGPT Plugin
+
+1. Install CodeGPT plugin
+2. Go to Settings > CodeGPT
+3. Select "Custom OpenAI" as provider
+4. Enter your CodeVault URL and API key
+
+## Neovim
+
+Using `llm.nvim` or similar plugins:
+
+```lua
+require('llm').setup({
+  api_url = "https://codevault.your-company.com/v1/chat/completions",
+  model = "deepseek-v3",
+  api_key = os.getenv("CODEVAULT_API_KEY")
+})
+```
+
+## Command Line
+
+Use CodeVault directly from the terminal:
+
+```bash
+export OPENAI_API_BASE="https://codevault.your-company.com/v1"
+export OPENAI_API_KEY="your-api-key"
+
+# Works with any OpenAI CLI tool
+curl $OPENAI_API_BASE/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "deepseek-v3", "messages": [{"role": "user", "content": "Hello"}]}'
+```
+
+## Troubleshooting
+
+### Connection refused
+- Verify the API URL is correct
+- Check if you're on the corporate network/VPN
+
+### 401 Unauthorized
+- Verify your API key is correct
+- Check if the key has expired
+
+### Model not found
+- Run `GET /v1/models` to see available models
+- Contact your administrator for model access

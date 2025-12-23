@@ -1,0 +1,97 @@
+---
+title: Fine-tuning
+description: Train custom models on your coding standards
+order: 8
+---
+
+# Fine-tuning
+
+CodeVault supports fine-tuning models on your codebase to match your team's coding standards and conventions.
+
+## Why Fine-tune?
+
+Fine-tuning creates a model that:
+
+- Matches your code style and conventions
+- Understands your internal libraries and APIs
+- Follows your documentation patterns
+- Uses your preferred naming conventions
+
+## How It Works
+
+### 1. Data Preparation
+
+We help you prepare training data from:
+
+- Your existing codebase
+- Pull request history
+- Code review comments
+- Documentation examples
+
+### 2. Training
+
+Using LoRA (Low-Rank Adaptation):
+
+- Efficient training on consumer GPUs
+- Preserves base model knowledge
+- Quick iteration cycles
+- Multiple fine-tunes per base model
+
+### 3. Deployment
+
+Fine-tuned models are deployed alongside base models:
+
+- Access via the same API
+- Specify model name in requests
+- A/B test against base models
+
+## Training Data Examples
+
+Good training examples include:
+
+```markdown
+### Input
+Write a function to validate email addresses
+
+### Output (your style)
+def validate_email(email: str) -> bool:
+    """
+    Validate an email address format.
+
+    Args:
+        email: The email string to validate
+
+    Returns:
+        True if valid, False otherwise
+    """
+    import re
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return bool(re.match(pattern, email))
+```
+
+## Best Practices
+
+- **Quality over quantity** - 100 excellent examples beat 10,000 poor ones
+- **Diverse examples** - Cover different scenarios and patterns
+- **Consistent style** - All examples should follow the same conventions
+- **Include context** - Show complete functions, not fragments
+
+## Hardware Requirements
+
+Fine-tuning requirements:
+
+| Base Model | VRAM for Training |
+|------------|-------------------|
+| 7B | 16GB |
+| 14B | 24GB |
+| 32B | 48GB+ |
+
+## Process
+
+1. **Consultation** - Discuss your requirements and goals
+2. **Data preparation** - We help curate training examples
+3. **Training** - Run on your infrastructure
+4. **Evaluation** - Test against your benchmarks
+5. **Deployment** - Make available via API
+
+Contact us to discuss fine-tuning for your team.

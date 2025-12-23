@@ -1,0 +1,117 @@
+---
+title: OpenAI-Compatible API
+description: Use CodeVault with any OpenAI-compatible tool
+order: 3
+---
+
+# OpenAI-Compatible API
+
+CodeVault provides an OpenAI-compatible API, making it easy to use with existing tools and integrations.
+
+## Base URL
+
+After deployment, you'll receive your API endpoint:
+
+```
+https://codevault.your-company.com/v1
+```
+
+## Authentication
+
+All requests require an API key in the Authorization header:
+
+```bash
+Authorization: Bearer your-api-key
+```
+
+## Endpoints
+
+### Chat Completions
+
+```bash
+POST /v1/chat/completions
+```
+
+**Request:**
+
+```json
+{
+  "model": "deepseek-v3",
+  "messages": [
+    {"role": "system", "content": "You are a helpful coding assistant."},
+    {"role": "user", "content": "Write a function to sort an array"}
+  ],
+  "temperature": 0.7,
+  "max_tokens": 2048,
+  "stream": false
+}
+```
+
+**Response:**
+
+```json
+{
+  "id": "chatcmpl-abc123",
+  "object": "chat.completion",
+  "created": 1703123456,
+  "model": "deepseek-v3",
+  "choices": [{
+    "index": 0,
+    "message": {
+      "role": "assistant",
+      "content": "Here's a function to sort an array..."
+    },
+    "finish_reason": "stop"
+  }],
+  "usage": {
+    "prompt_tokens": 25,
+    "completion_tokens": 150,
+    "total_tokens": 175
+  }
+}
+```
+
+### Completions (Legacy)
+
+```bash
+POST /v1/completions
+```
+
+For code completion without chat context.
+
+### List Models
+
+```bash
+GET /v1/models
+```
+
+Returns available models on your deployment.
+
+## Streaming
+
+Enable streaming for real-time responses:
+
+```bash
+curl https://codevault.your-company.com/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer your-api-key" \
+  -d '{
+    "model": "deepseek-v3",
+    "messages": [{"role": "user", "content": "Explain recursion"}],
+    "stream": true
+  }'
+```
+
+## Rate Limits
+
+Rate limits are configured per API key. Contact your administrator for specific limits.
+
+## Error Codes
+
+| Code | Description |
+|------|-------------|
+| 400 | Bad request - check your request format |
+| 401 | Unauthorized - invalid or missing API key |
+| 404 | Model not found |
+| 429 | Rate limit exceeded |
+| 500 | Server error |

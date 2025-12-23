@@ -1,0 +1,70 @@
+---
+title: API Key Management
+description: Create and manage API keys for your team
+order: 4
+---
+
+# API Key Management
+
+CodeVault provides comprehensive API key management for secure access control.
+
+## Creating API Keys
+
+API keys are created through the web dashboard:
+
+1. Log in to your CodeVault dashboard
+2. Navigate to **Settings > API Keys**
+3. Click **Create New Key**
+4. Set a name and optional expiration
+5. Copy and securely store your key
+
+API keys are only shown once at creation. Store them securely.
+
+## Key Properties
+
+Each API key has:
+
+- **Name** - Descriptive identifier
+- **Prefix** - Visible portion for identification (e.g., `cv_abc...`)
+- **Created date** - When the key was generated
+- **Last used** - Most recent API call
+- **Expiration** - Optional expiry date
+
+## Using API Keys
+
+Include your API key in the Authorization header:
+
+```bash
+curl https://codevault.your-company.com/v1/chat/completions \
+  -H "Authorization: Bearer cv_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "deepseek-v3", "messages": [...]}'
+```
+
+## Rate Limiting
+
+Rate limits are configured per key:
+
+- **Requests per minute** - Maximum API calls
+- **Tokens per minute** - Maximum tokens processed
+
+Exceeded limits return HTTP 429.
+
+## Revoking Keys
+
+To revoke an API key:
+
+1. Go to **Settings > API Keys**
+2. Find the key to revoke
+3. Click **Revoke**
+4. Confirm the action
+
+Revoked keys are immediately invalidated.
+
+## Best Practices
+
+- Create separate keys for different applications
+- Set expiration dates for temporary access
+- Rotate keys regularly
+- Never commit keys to version control
+- Use environment variables in your code

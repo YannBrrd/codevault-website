@@ -1,0 +1,71 @@
+---
+title: RAG Pipeline
+description: Index your codebase for context-aware completions
+order: 7
+---
+
+# RAG Pipeline
+
+CodeVault includes a powerful RAG (Retrieval-Augmented Generation) pipeline that indexes your codebase for context-aware completions.
+
+## How It Works
+
+1. **Indexing** - Your codebase is parsed and chunked into meaningful segments
+2. **Embedding** - Code chunks are converted to vector embeddings
+3. **Storage** - Embeddings are stored in a vector database
+4. **Retrieval** - When you ask a question, relevant code is retrieved
+5. **Generation** - Retrieved context is included in the prompt for accurate responses
+
+## Benefits
+
+- **Project-aware completions** - AI understands your specific codebase
+- **Find usage patterns** - "How do we handle authentication?"
+- **Cross-file understanding** - AI sees relationships between files
+- **Documentation search** - Include markdown docs in the index
+
+## Indexed Content
+
+The RAG pipeline indexes:
+
+- Source code files (all major languages)
+- Markdown documentation
+- Configuration files
+- Test files
+- Comments and docstrings
+
+## Example Queries
+
+With RAG enabled, you can ask:
+
+- "How is the user authentication implemented?"
+- "Show me examples of error handling in this project"
+- "What's the pattern for database connections?"
+- "Find all usages of the PaymentService class"
+
+## Configuration
+
+RAG is configured during deployment. Options include:
+
+- **Repository paths** - Which directories to index
+- **File filters** - Include/exclude patterns
+- **Chunk size** - How code is segmented
+- **Update frequency** - How often to re-index
+
+## Privacy
+
+All RAG processing happens on your infrastructure:
+
+- Code never leaves your servers
+- Embeddings are stored locally
+- No external API calls for indexing
+- Full control over indexed content
+
+## Performance
+
+RAG adds minimal latency:
+
+- Initial indexing: Minutes to hours (depends on codebase size)
+- Query retrieval: ~50-100ms
+- Incremental updates: Seconds for changed files
+
+Contact us to discuss RAG configuration for your codebase.
