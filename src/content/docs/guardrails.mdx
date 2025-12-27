@@ -1,0 +1,233 @@
+---
+title: Guardrails
+description: Content filtering, PII protection, and usage quotas
+order: 5
+---
+
+# Guardrails
+
+CodeVault includes a comprehensive guardrails system to protect your organization from data leaks, prompt injection attacks, and policy violations.
+
+## Features Overview
+
+- **PII Detection & Redaction** - Automatically detect and redact sensitive data
+- **Prompt Injection Prevention** - Block malicious prompt manipulation attempts
+- **Content Filtering** - Block or filter inappropriate content
+- **Semantic Analysis** - AI-powered intent classification
+- **Usage Quotas** - Multi-level rate limiting and quotas
+- **Audit Logging** - Complete violation tracking with user attribution
+
+## Configuration
+
+Enable guardrails in your `.env` file:
+
+```bash
+# Enable guardrails system
+GUARDRAILS_ENABLED=true
+
+# Default action: block_and_redact, block, or log
+GUARDRAILS_DEFAULT_ACTION=block_and_redact
+
+# Auto-redact PII from prompts and responses
+GUARDRAILS_PII_AUTO_REDACT=true
+
+# Length limits
+GUARDRAILS_MAX_PROMPT_CHARS=100000
+GUARDRAILS_MAX_PROMPT_TOKENS=32000
+GUARDRAILS_MAX_RESPONSE_CHARS=50000
+```
+
+## PII Detection
+
+CodeVault automatically detects and redacts common PII patterns:
+
+| Pattern | Example | Replacement |
+|---------|---------|-------------|
+| Email | john@example.com | `[EMAIL]` |
+| Phone (US) | (555) 123-4567 | `[PHONE]` |
+| SSN | 123-45-6789 | `[SSN]` |
+| Credit Card | 4111-1111-1111-1111 | `[CREDIT_CARD]` |
+| AWS Keys | AKIA... | `[AWS_KEY]` |
+| API Keys | api_key=sk-... | `[API_KEY]` |
+
+### Managing PII Patterns
+
+1. Go to **Guardrails > PII Patterns** in the dashboard
+2. Enable/disable individual patterns
+3. Add custom patterns with regex
+
+## Prompt Injection Prevention
+
+Built-in detection for common injection attempts:
+
+- "Ignore previous instructions"
+- "Disregard all prior prompts"
+- "You are now in jailbreak mode"
+- "Bypass restrictions"
+- Custom patterns you define
+
+When detected, requests are blocked and logged with the username and IP address.
+
+## Custom Rules
+
+Create custom guardrail rules through the dashboard:
+
+1. Navigate to **Guardrails > Rules**
+2. Click **Create Rule**
+3. Configure:
+   - **Name** - Descriptive identifier
+   - **Type** - Pre-request or Post-response
+   - **Category** - PII, Blocked Content, Injection, etc.
+   - **Pattern** - Regex pattern to match
+   - **Action** - Block, Redact, or Log
+   - **Test Mode** - Log without blocking
+
+### Rule Types
+
+- **Pre-request** - Applied before sending to the model
+- **Post-response** - Applied to model output
+- **Semantic** - AI-based content analysis
+
+## Semantic Guardrails
+
+Enable AI-powered content moderation using a lightweight local model:
+
+```bash
+# Enable semantic analysis
+GUARDRAILS_SEMANTIC_ENABLED=true
+
+# Model for analysis (lightweight recommended)
+GUARDRAILS_SEMANTIC_MODEL=gemma2:2b
+
+# Timeout in seconds
+GUARDRAILS_SEMANTIC_TIMEOUT=10
+```
+
+### Intent Classification
+
+The semantic engine classifies requests into categories:
+
+- `coding_help` - Legitimate coding assistance
+- `general_question` - Technical questions
+- `harmful_request` - Malicious code requests
+- `off_topic` - Non-coding topics
+- `jailbreak_attempt` - Safety bypass attempts
+
+Requests classified as `harmful_request` or `jailbreak_attempt` with high confidence are automatically blocked.
+
+### Topic Drift Detection
+
+For multi-turn conversations, the system detects when discussions drift away from coding topics and can warn or redirect users.
+
+## Usage Quotas
+
+Configure multi-level quotas to control resource usage:
+
+### Quota Scopes
+
+- **Organization** - Limits for entire org
+- **API Key** - Per-key limits
+- **Model** - Per-model limits
+
+### Quota Types
+
+- **Requests** - Number of API calls
+- **Tokens** - Total tokens processed
+- **Concurrent** - Simultaneous requests
+
+### Default Quotas
+
+```bash
+GUARDRAILS_DEFAULT_ORG_DAILY_REQUESTS=10000
+GUARDRAILS_DEFAULT_ORG_DAILY_TOKENS=1000000
+```
+
+### Creating Quotas
+
+1. Go to **Guardrails > Quotas**
+2. Click **Create Quota**
+3. Select scope, type, period, and limit
+4. Save
+
+## Violation Monitoring
+
+### Dashboard
+
+The Guardrails dashboard shows:
+
+- **Blocked Requests** - Total blocked in last 24h
+- **PII Redacted** - Count of PII detections
+- **Injection Attempts** - Detected attacks
+- **Quota Exceeded** - Rate limit hits
+
+### Violation Logs
+
+View detailed violation history:
+
+- Timestamp and request ID
+- Rule that triggered
+- Username and IP address
+- Matched content (truncated)
+- Action taken
+
+Filter by severity: Low, Medium, High, Critical
+
+### Alerts
+
+Configure webhook alerts for critical violations:
+
+```bash
+# Slack webhook
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/...
+
+# Microsoft Teams webhook
+TEAMS_WEBHOOK_URL=https://outlook.office.com/webhook/...
+```
+
+Alerts are sent for high and critical severity violations.
+
+## Prometheus Metrics
+
+Guardrails exposes metrics for monitoring:
+
+```
+codevault_guardrail_checks_total{type, category, result}
+codevault_guardrail_violations_total{rule_name, severity, action}
+codevault_guardrail_latency_seconds{type}
+codevault_quota_usage_ratio{scope, scope_id, quota_type}
+codevault_pii_detections_total{pattern_type}
+codevault_injection_attempts_total{severity}
+```
+
+## API Endpoints
+
+Manage guardrails programmatically:
+
+```bash
+# List rules
+GET /api/guardrails/rules
+
+# Create rule
+POST /api/guardrails/rules
+
+# Test content
+POST /api/guardrails/test
+{
+  "content": "Text to test against guardrails"
+}
+
+# Get violations
+GET /api/guardrails/violations?hours=24&severity=high
+
+# Get quota usage
+GET /api/guardrails/quotas/usage
+```
+
+## Best Practices
+
+1. **Start with logging** - Enable rules in test mode first
+2. **Review violations** - Check logs before enabling blocking
+3. **Custom patterns** - Add industry-specific PII patterns
+4. **Set quotas gradually** - Monitor usage before setting limits
+5. **Alert on critical** - Configure webhooks for immediate notification
+6. **Regular audits** - Review violation logs weekly
