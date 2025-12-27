@@ -50,11 +50,75 @@ CodeVault automatically detects and redacts common PII patterns:
 | AWS Keys | AKIA... | `[AWS_KEY]` |
 | API Keys | api_key=sk-... | `[API_KEY]` |
 
+### EU & Localized PII Patterns
+
+CodeVault includes built-in support for European PII patterns:
+
+#### France (FR)
+| Pattern | Description | Replacement |
+|---------|-------------|-------------|
+| NIR | Social Security / INSEE number | `[FR_NIR]` |
+| Phone | French phone numbers (+33) | `[FR_PHONE]` |
+| IBAN | French bank accounts | `[FR_IBAN]` |
+| Passport | French passport numbers | `[FR_PASSPORT]` |
+| SIRET | Company identification | `[FR_SIRET]` |
+
+#### Spain (ES)
+| Pattern | Description | Replacement |
+|---------|-------------|-------------|
+| DNI | National ID (8 digits + letter) | `[ES_DNI]` |
+| NIE | Foreigner ID (X/Y/Z + 7 digits) | `[ES_NIE]` |
+| Phone | Spanish phone numbers (+34) | `[ES_PHONE]` |
+| IBAN | Spanish bank accounts | `[ES_IBAN]` |
+| NSS | Social Security Number | `[ES_NSS]` |
+
+#### Germany (DE)
+| Pattern | Description | Replacement |
+|---------|-------------|-------------|
+| Steuer-ID | Tax ID (11 digits) | `[DE_STEUERID]` |
+| Phone | German phone numbers (+49) | `[DE_PHONE]` |
+| IBAN | German bank accounts | `[DE_IBAN]` |
+| SVNR | Social Insurance Number | `[DE_SVNR]` |
+
+#### Italy (IT)
+| Pattern | Description | Replacement |
+|---------|-------------|-------------|
+| Codice Fiscale | Tax Code (16 chars) | `[IT_CF]` |
+| Phone | Italian mobile numbers (+39) | `[IT_PHONE]` |
+| IBAN | Italian bank accounts | `[IT_IBAN]` |
+
+#### Other EU Countries
+| Country | Patterns Available |
+|---------|-------------------|
+| Belgium (BE) | National Number, IBAN |
+| Netherlands (NL) | BSN, IBAN |
+| Portugal (PT) | NIF, IBAN |
+| Poland (PL) | PESEL, NIP, IBAN |
+| UK | NINO, Phone, IBAN |
+
+#### Generic EU
+| Pattern | Description | Replacement |
+|---------|-------------|-------------|
+| EU VAT | VAT numbers (all EU countries) | `[EU_VAT]` |
+
+### Filtering by Locale
+
+Use the API to filter patterns by locale:
+
+```bash
+# Get only French patterns
+GET /api/guardrails/pii-patterns?locale=FR
+
+# Get only Spanish patterns
+GET /api/guardrails/pii-patterns?locale=ES
+```
+
 ### Managing PII Patterns
 
 1. Go to **Guardrails > PII Patterns** in the dashboard
 2. Enable/disable individual patterns
-3. Add custom patterns with regex
+3. Filter by locale (FR, ES, DE, IT, etc.)
+4. Add custom patterns with regex
 
 ## Prompt Injection Prevention
 
